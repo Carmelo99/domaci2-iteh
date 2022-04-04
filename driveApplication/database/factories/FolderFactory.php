@@ -17,7 +17,8 @@ class FolderFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'use_for'=>$this->faker->randomElement(['short_videos','long_videos']),
         ];
     }
 }
