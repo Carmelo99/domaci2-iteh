@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('length');
-            $table->integer('resolution');
-            $table->string('owner');
-            $table->foreignId('folder_id');
-            $table->foreignId('user_id');
-            $table->timestamps();
+        Schema::table('folders', function (Blueprint $table) {
+            $table->string('use_for');
         });
     }
 
@@ -32,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos');
+        Schema::table('folders', function (Blueprint $table) {
+            $table->dropColumn('use_for');
+        });
     }
 };
